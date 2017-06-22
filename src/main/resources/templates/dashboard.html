@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorator="/admin-layout">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+</head>
+<body>
+	<div layout:fragment="content" class="wrapper">
+		<!--state overview start-->
+                <div class="row state-overview">
+                    <div class="col-lg-6 col-sm-6">
+                        <section class="panel purple">
+                            <div class="symbol">
+                                <i class="fa  fa-group"></i>
+                            </div>
+                            <div class="value white">
+                                <h1 class="timer" data-from="0" data-to="320"
+                                    data-speed="1000">
+                                    15
+                                </h1>
+                                <p th:text="#{total_user}"></p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <section class="panel ">
+                            <div class="symbol purple-color">
+                                <i class="fa fa-male"></i>
+                            </div>
+                            <div class="value gray">
+                                <h1 class="purple-color timer" data-from="0" data-to="123"
+                                    data-speed="1000">
+                                    8
+                                </h1>
+                                <p th:text="#{total_male}"></p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <section class="panel green">
+                            <div class="symbol ">
+                                <i class="fa fa-sitemap"></i>
+                            </div>
+                            <div class="value white">
+                                <h1 class="timer" data-from="0" data-to="432"
+                                    data-speed="1000">
+                                    3
+                                </h1>
+                                <p th:text="#{total_role}"></p>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <section class="panel">
+                            <div class="symbol green-color">
+                                <i class="fa fa-female"></i>
+                            </div>
+                            <div class="value gray">
+                                <h1 class="green-color timer" data-from="0" data-to="2345"
+                                    data-speed="3000">
+                                    7
+                                </h1>
+                                <p th:text="#{total_female}"></p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!--state overview end-->
+    </div>
+</body>
+</html>

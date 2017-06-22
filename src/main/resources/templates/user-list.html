@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorator="/admin-layout">
+<head>
+<meta charset="UTF-8">
+<title>User List</title>
+</head>
+<body>
+	<div layout:fragment="content" class="wrapper">
+		<div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading head-border" th:text="#{user_list}">
+                            
+                        </header>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th th:text="#{user_id}"></th>
+                                <th th:text="#{full_name}"></th>
+                                <th th:text="#{user_name}"></th>
+                                <th th:text="#{gender}"></th>
+                                <th th:text="#{email}"></th>
+                                <th th:text="#{role_id}"></th>
+                                <th th:text="#{password}"></th>
+                                <th th:text="' '+#{action}+' '"></th>   
+                            </tr>
+                            <tr th:each="usel : ${USERS}">
+                                <td th:text="${usel.id}"></td>
+                                <td th:text="${usel.name}"></td>
+                                <td th:text="${usel.username}"></td>
+                                <td th:text="${usel.gender}"></td>
+                                <td th:text="${usel.email}"></td>
+                                <td th:text="${usel.role_id}"></td>
+                                <td th:text="${usel.password}"></td>
+                                <td>
+		                                <button class="btn btn-sm btn-danger addon-btn m-b-5">
+		                                    <i class="fa fa-trash-o pull-right"></i>
+		                                    <span th:text="#{delete}"></span>
+		                                </button>
+		                                <button class="btn btn-sm btn-warning addon-btn m-b-5">
+		                                    <i class="fa fa-pencil-square-o pull-right"></i>
+		                                    <span th:text="#{update}"></span>
+		                                </button>
+		                                <button class="btn btn-sm btn-info addon-btn m-b-5">
+		                                    <i class="fa fa-info pull-right"></i>
+		                                    <span th:text="#{detail}"></span>
+		                                </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+    </div>
+</body>
+</html>

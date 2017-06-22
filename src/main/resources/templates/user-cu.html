@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorator="/admin-layout">
+<head>
+<meta charset="UTF-8">
+<title>Create User</title>
+</head>
+<body>
+	<div layout:fragment="content" class="wrapper">
+		<div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading" th:text="#{new_user}"></header>
+                            <div class="panel-body">
+                                <div class="form">
+                                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="POST" th:action="@{/adduser}">
+                                        <div class="form-group ">
+                                            <label for="firstname" class="control-label col-lg-2" th:text="#{user_id}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class=" form-control" id="firstname" name="firstname" type="number" required th:field="${user.id}"/>
+                                                <!-- th:field="${user.id}" -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="lastname" class="control-label col-lg-2" th:text="#{full_name}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class=" form-control" id="lastname" name="lastname" type="text" required th:field="${user.name}"/> <!-- th:field="${user.name}" -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="username" class="control-label col-lg-2" th:text="#{user_name}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control " id="username" name="username" type="text" required  th:field="${user.username}"/> <!-- th:field="${user.username}" -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2" th:text="#{gender}+' *'"></label>
+                                            <!-- <div class="col-lg-10">
+                                                <input class="form-control " id="password" name="password" type="text" required th:field="${user.gender}"/> th:field="${user.gender}"
+                                            </div> -->
+                                            <div class="col-lg-10">
+	                                            <select th:field="${user.gender}" class="form-control">
+	                                            	<option value="Male">Male</option>
+	                                            	<option value="Female">Female</option>
+	                                            </select>
+	                                        </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2" th:text="#{email}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control " id="password" name="password" type="email" required th:field="${user.email}"/> <!-- th:field="${user.email}" -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2" th:text="#{role_id}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control " id="password" name="password" type="number" required th:field="${user.role_id}"/> <!-- th:field="${user.role_id}" -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2" th:text="#{password}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control " id="password" name="password" type="password" required th:field="${user.password}"/> <!-- th:field="${user.password}" -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="confirm_password" class="control-label col-lg-2" th:text="#{confirm_password}+' *'"></label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control " id="confirm_password" name="confirm_password" type="password" required/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="agree" class="control-label m-t-less-6 col-lg-2 col-sm-3"​ th:text="#{agree_to_our_policy}+' *'"></label>
+                                            <div class="col-lg-10 col-sm-9 chk-fv">
+                                                <input  type="checkbox" style="width: 20px" class="checkbox form-control iCheck" id="agree" name="agree" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-offset-2 col-lg-10">
+                                                <button class="btn btn-success" type="submit">Save</button>
+                                                <a class="btn btn-default" th:href="@{/dashboard}" >Cancel</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+    </div>
+</body>
+</html>
