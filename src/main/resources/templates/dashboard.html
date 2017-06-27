@@ -17,8 +17,8 @@
                             </div>
                             <div class="value white">
                                 <h1 class="timer" data-from="0" data-to="320"
-                                    data-speed="1000">
-                                    15
+                                    data-speed="1000" th:text="${TOTALUSERS}">
+                                    
                                 </h1>
                                 <p th:text="#{total_user}"></p>
                             </div>
@@ -31,8 +31,7 @@
                             </div>
                             <div class="value gray">
                                 <h1 class="purple-color timer" data-from="0" data-to="123"
-                                    data-speed="1000">
-                                    8
+                                    data-speed="1000" th:text="${TOTALMALE}">
                                 </h1>
                                 <p th:text="#{total_male}"></p>
                             </div>
@@ -45,10 +44,9 @@
                             </div>
                             <div class="value white">
                                 <h1 class="timer" data-from="0" data-to="432"
-                                    data-speed="1000">
-                                    3
+                                    data-speed="1000" th:text="${TOTALACTIVE}">
                                 </h1>
-                                <p th:text="#{total_role}"></p>
+                                <p th:text="#{total_active}"></p>
                             </div>
                         </section>
                     </div>
@@ -59,8 +57,7 @@
                             </div>
                             <div class="value gray">
                                 <h1 class="green-color timer" data-from="0" data-to="2345"
-                                    data-speed="3000">
-                                    7
+                                    data-speed="3000" th:text="${TOTALFEMALE}">
                                 </h1>
                                 <p th:text="#{total_female}"></p>
                             </div>

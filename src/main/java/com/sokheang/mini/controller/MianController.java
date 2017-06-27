@@ -1,11 +1,13 @@
 package com.sokheang.mini.controller;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,6 +17,7 @@ import com.sokheang.mini.services.impl.RoleServiceImpl;
 import com.sokheang.mini.services.impl.UserServiceImpl;
 
 @Controller
+
 public class MianController {
 	
 	private UserServiceImpl userServiceImpl;
@@ -32,34 +35,11 @@ public class MianController {
 		model.put("MYTITLE", "Dashboard");
 		model.put("URL", "/");
 		model.put("ACT","active");
+		model.put("TOTALUSERS", userServiceImpl.countUser());
+		model.put("TOTALMALE", userServiceImpl.countMale());
+		model.put("TOTALFEMALE", userServiceImpl.countFemale());
+		model.put("TOTALACTIVE", userServiceImpl.countActive());
 		return "dashboard";
-	}
-	
-	
-	
-	@RequestMapping("/user-cu")
-	public String userCuPage(ModelMap model){
-		model.put("MYTITLE", "Dashboard -> Create User");
-		model.put("URL", "/user-cu");
-		model.addAttribute("user", new User());
-		model.put("ACT","active");
-		return "user-cu";
-	}
-	
-	@PostMapping("/adduser")
-	public String saveUser(@ModelAttribute("user") User user){
-		System.out.println(user.getId() + user.getName());
-		userServiceImpl.addUser(user);
-		return "redirect:/user-list";
-	}
-	
-	@RequestMapping("/user-list")
-	public String  userListPage(ModelMap model){
-		model.put("MYTITLE", "Dashboard -> User List");
-		model.put("URL", "/user-list");
-		model.addAttribute("USERS",userServiceImpl.getAllUser());
-		model.put("ACT","active");
-		return "user-list";
 	}
 	
 	@RequestMapping("/role-cu")
@@ -85,5 +65,60 @@ public class MianController {
 		model.addAttribute("ROLES",roleServiceImpl.getAllRole());
 		model.put("ACT","active");
 		return "role-list";
+	}
+	
+	@RequestMapping("/user-list")
+	public String userListPage(ModelMap model){
+		model.put("MYTITLE", "Dashboard -> User List");
+		model.put("URL", "/user-list");
+		model.addAttribute("USERS",userServiceImpl.getAllUser());
+		model.put("ACT","active");
+		return "user-list";
+	}
+	
+	@RequestMapping("/user-profile/{user_hash}")
+	public String userProfilePage(ModelMap model,@PathVariable("user_hash") String userHash){
+		model.put("MYTITLE", "Dashboard -> User List -> User Profile");
+		model.addAttribute("USER",userServiceImpl.getUserProfile(userHash));
+		return "user-profile";
+	}
+	
+	@RequestMapping("/user-cu")
+	public String userCuPage(ModelMap model){
+		model.put("MYTITLE", "Dashboard -> Create User");
+		model.put("URL", "/user-cu");
+		model.addAttribute("user", new User());
+		return "user-cu";
+	}
+	
+	@PostMapping("/adduser")
+	public String save(@ModelAttribute("user") User user){
+		userServiceImpl.addUser(user);
+		return "redirect:/user-list";
+	}
+	
+	@RequestMapping("/user/delete/{user_hash}")
+	public String delete(@PathVariable("user_hash") String userHash,ModelMap model){
+		userServiceImpl.deleteByUserHash(userHash);
+		return "redirect:/user-list";
+	}
+	
+	@PostMapping("/update-profile")
+	public String update(@ModelAttribute("user") User user){
+		user.setUser_hash(userHash);
+		userServiceImpl.updateByUserHash(user);
+		return "redirect:/user-list";
+	}
+	
+	String userHash="";
+	
+	@RequestMapping("/user-profile/update/{user_hash}")
+	public String userProfileUpdate(ModelMap model,@PathVariable("user_hash") String userHash){
+		model.put("MYTITLE", "Dashboard -> User List -> User Update");
+		model.addAttribute("user",userServiceImpl.getUserProfile(userHash));
+		model.addAttribute("HASH",userHash);
+		System.out.println(userHash);
+		this.userHash = userHash;
+		return "user-update";
 	}
 }

@@ -1,69 +1,94 @@
 package com.sokheang.mini.model;
 
+
 public class User {
 	private int id;
-	private String name;
 	private String username;
-	private String gender;
 	private String email;
-	private int role_id;
-	private String password;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public int getRole_id() {
-		return role_id;
-	}
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public User(int id, String name, String username, String gender, String email, int role_id, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.username = username;
-		this.gender = gender;
-		this.email = email;
-		this.role_id = role_id;
-		this.password = password;
-	}
+	private String gender;
+	private String phonenumber;
+	private String status;
+	private String user_hash;
+	private String created_date;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
+	public User(int id, String username, String email, String gender, String phonenumber, String status,
+			String user_hash) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.gender = gender;
+		this.phonenumber = phonenumber;
+		this.status = status;
+		this.user_hash = user_hash;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getUser_hash() {
+		return user_hash;
+	}
+
+	public void setUser_hash(String user_hash) {
+		this.user_hash = user_hash;
+	}
+
+	public String getCreated_date() {
+		return created_date;
+	}
+
+	public void setCreated_date(String created_date) {
+		this.created_date = created_date;
+	}
 }

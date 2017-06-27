@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>User List</title>
+<style type="text/css">
+	tr th,td{
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<div layout:fragment="content" class="wrapper">
@@ -14,37 +19,45 @@
                             
                         </header>
                         <table class="table table-bordered">
-                            <tr>
-                                <th th:text="#{user_id}"></th>
-                                <th th:text="#{full_name}"></th>
+                            <tr class="th-center">
+                                <th th:text="#{user_id}" ></th>
                                 <th th:text="#{user_name}"></th>
-                                <th th:text="#{gender}"></th>
                                 <th th:text="#{email}"></th>
-                                <th th:text="#{role_id}"></th>
-                                <th th:text="#{password}"></th>
+                                <th th:text="#{gender}"></th>
+                                <th th:text="#{phonenumber}"></th>
+                                <th th:text="#{status}"></th>
                                 <th th:text="' '+#{action}+' '"></th>   
                             </tr>
-                            <tr th:each="usel : ${USERS}">
-                                <td th:text="${usel.id}"></td>
-                                <td th:text="${usel.name}"></td>
-                                <td th:text="${usel.username}"></td>
-                                <td th:text="${usel.gender}"></td>
-                                <td th:text="${usel.email}"></td>
-                                <td th:text="${usel.role_id}"></td>
-                                <td th:text="${usel.password}"></td>
+                            <tr th:each="usel : ${USERS}" th:object="${usel}">
+                                <td th:text="*{id}"></td>
+                                <td th:text="*{username}"></td>
+                                <td th:text="*{email}"></td>
                                 <td>
-		                                <button class="btn btn-sm btn-danger addon-btn m-b-5">
+                                	<span th:if="*{gender}=='M'" th:text="#{male}"></span>
+                                	<span th:unless="*{gender}=='M'" th:text="#{female}"></span>
+                                </td>
+                                <td th:text="*{phonenumber}"></td>
+                                <td>
+                                	<span class="label label-success" th:if="*{status}=='Y'" th:text="#{active}"></span>
+                                	<span class="label label-danger" th:unless="*{status}=='Y'" th:text="#{inactive}"></span>
+                                </td>
+                                <td>
+		                                <a  onclick="return confirm('Are you sure to delete...?')"
+		                                	th:href="@{/user/delete/{user_hash}(user_hash = *{user_hash})}"
+		                                	class="btn btn-sm btn-danger addon-btn m-b-5" >
 		                                    <i class="fa fa-trash-o pull-right"></i>
 		                                    <span th:text="#{delete}"></span>
-		                                </button>
-		                                <button class="btn btn-sm btn-warning addon-btn m-b-5">
+		                                </a>
+		                                <a 	th:href="@{/user-profile/update/{user_hash}(user_hash = *{user_hash})}"
+		                                	class="btn btn-sm btn-warning addon-btn m-b-5">
 		                                    <i class="fa fa-pencil-square-o pull-right"></i>
 		                                    <span th:text="#{update}"></span>
-		                                </button>
-		                                <button class="btn btn-sm btn-info addon-btn m-b-5">
+		                                </a>
+		                                <a 	th:href="@{/user-profile/{user_hash}(user_hash = *{user_hash})}"
+		                                	class="btn btn-sm btn-info addon-btn m-b-5">
 		                                    <i class="fa fa-info pull-right"></i>
 		                                    <span th:text="#{detail}"></span>
-		                                </button>
+		                                </a>
                                 </td>
                             </tr>
                         </table>

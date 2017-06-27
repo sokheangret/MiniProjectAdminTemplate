@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultrap.net.nz/thymeleaf/layout"
+	  layout:decorator="/admin-layout">
+<head>
+<meta charset="UTF-8">
+<title>User Profile</title>
+</head>
+<body>
+	<div layout:fragment="content" class="wrapper">
+		<div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading head-border" th:text="#{user_profile}">
+                           
+                        </header>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                                 <div class="col-lg-9">
+                                 	<label for="username" class="control-label col-lg-3" th:text="#{user_id}"></label>
+                                 	<span th:text="${USER.id}"></span>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                                 <div class="col-lg-9">
+                                 	<label for="username" class="control-label col-lg-3" th:text="#{user_name}"></label>
+                                 	<span th:text="${USER.username}"></span>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                                 <div class="col-lg-9">
+                                 	<label for="username" class="control-label col-lg-3" th:text="#{email}"></label>
+                                 	<span th:text="${USER.email}"></span>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                                 <div class="col-lg-9">
+                                 	<label for="username" class="control-label col-lg-3" th:text="#{gender}"></label>
+                                 	<span th:if="*{gender}=='M'" th:text="#{male}"></span>
+                                	<span th:unless="*{gender}=='M'" th:text="#{female}"></span>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                                 <div class="col-lg-9">
+                                 	<label for="username" class="control-label col-lg-3" th:text="#{phonenumber}"></label>
+                                 	<span th:text="${USER.phonenumber}"></span>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                                 <div class="col-lg-9">
+                                 	<label for="username" class="control-label col-lg-3" th:text="#{status}"></label>
+                                 	<div>
+                                 		<span class="label label-success" th:if="${USER.status}=='Y'" th:text="#{active}"></span>
+                                		<span class="label label-danger" th:unless="${USER.status}=='Y'" th:text="#{inactive}"></span>
+                                 	</div>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="panel-heading head-border">
+                        	<div class="form-group ">
+                        		<div class="col-lg-10">
+                        		</div>
+                                 <div class="col-lg-2" style="margin-top: -8px;">
+                                 	<a class="btn btn-primary" th:href="@{/user-list}" th:text="#{back}"></a>
+                                 </div>
+                             </div>
+                        </div>
+                    </section>
+                </div>
+    </div>
+</body>
+</html>
